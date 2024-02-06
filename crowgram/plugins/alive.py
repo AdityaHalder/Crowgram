@@ -1,7 +1,6 @@
-from crowgram import app
-from pyrogram import filters
+from crowgram import app, cdx, eor
 
 
-@app.on_message(filters.command(["alive"], ["."]))
-async def check_userbot_status(client, message):
-    return await message.reply_text("**I am Alive.**")
+@app.on_message(cdx(["alive"]))
+async def alive_(client, message):
+    return await eor(message, "**I am Alive.**")
