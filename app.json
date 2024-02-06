@@ -10,39 +10,40 @@
       "crowgram"
     ],
     "repository": "https://github.com/AdityaHalder/Crowgram",
+    "stack": "container",
     "env": {
-      "API_ID": {
-        "description": "Enter your api id here.",
-        "value": "",
-        "required": true
-      },
-      "API_HASH": {
-        "description": "Enter your api hash here.",
-        "value": "",
-        "required": true
-      },
-      "BOT_TOKEN": {
-        "description": "Enter your bot token here",
-        "value": "",
-        "required": true
-      },
-      "STRING_SESSION": {
-        "description": "Enter your pyrogram v2 string session here.",
-        "value": "",
-        "required": true
-      },
-      "LOG_GROUP_ID": {
-        "description": "Enter your private log group id here.",
-        "value": "",
-        "required": true
-      }
+        "API_ID": {
+            "description": "Enter your api id here.",
+            "value": "",
+            "required": true
+        },
+        "API_HASH": {
+            "description": "Enter your api hash here.",
+            "value": "",
+            "required": true
+        },
+        "BOT_TOKEN": {
+            "description": "Enter your bot token here",
+            "value": "",
+            "required": true
+        },
+        "STRING_SESSION": {
+            "description": "Enter your pyrogram v2 string session here.",
+            "value": "",
+            "required": true
+        },
+        "LOG_GROUP_ID": {
+            "description": "Enter your private log group id here.",
+            "value": "",
+            "required": true
+        }
     },
     "buildpacks": [
-      {
-        "url": "heroku/python"
-      },
-      {
-        "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest"
-      }
+        {
+            "url": "heroku/python"
+        },
+        {
+            "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest"
+        }
     ]
-  }
+}
