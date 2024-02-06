@@ -16,7 +16,7 @@ async def init():
         await call.start()
         print("PyTgCalls client started.")
         await load_plugins()
-        print("All plugins loaded".)
+        print("All plugins loaded.")
     except Exception as e:
         return print(
             f"Error: {e}"
