@@ -1,6 +1,6 @@
 from crowgram import config
-from crowgram.clients import app, call
 from crowgram.modules import queues
+from crowgram.modules.clients import app, call
 from pyrogram import filters
 from pyrogram.types import Message
 from pytgcalls.types import Update
