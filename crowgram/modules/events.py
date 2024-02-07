@@ -61,9 +61,8 @@ async def call_decorators():
                 return
         check = await queues.get_from_queue(chat_id)
         media = check["media"]
-        audio = check["audio"]
         type = check["type"]
-        stream = await get_media_info(media, audio, type)
+        stream = await get_media_info(media, type)
         await call.change_stream(chat_id, stream)
         return await app.send_message("Streaming ...")
 
