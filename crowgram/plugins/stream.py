@@ -8,13 +8,11 @@ from pytgcalls.exceptions import AlreadyJoinedError, GroupCallNotFound
 from pytgcalls.exceptions import NoActiveGroupCall, TelegramServerError
 
 
-STREAM_COMMANDS = ["ply", "play", "vply", "vplay", "cply", "cplay"]
-
-@app.on_message(cdz(STREAM_COMMANDS) & ~filters.private)
+@app.on_message(cdz(["ply", "play", "vply", "vplay"]) & ~filters.private)
 async def start_stream(client, message):
     if message.sender_chat:
         return
-    aux = await eor(message, text="**🔄 Processing ...**")
+    aux = await eor(message, "**🔄 Processing ...**")
     chat_id = message.chat.id
     user_id = message.from_user.id
     mention = message.from_user.mention
