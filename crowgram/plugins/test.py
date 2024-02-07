@@ -3,7 +3,7 @@ from pyrogram import filters
 from pytgcalls.types import *
 
 
-@app.on_message(cdz(["stream"] & ~filters.private)
+@app.on_message(cdz(["stream"] & ~filters.private))
 async def test_media_stream(client, message):
     if message.sender_chat:
         return
