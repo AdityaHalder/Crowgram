@@ -50,20 +50,10 @@ async def get_media_info(vidid: str, query: str):
     search = url if url else query
     results = VideosSearch(search, limit=1)
     for result in (await results.next())["result"]:
-        try:
-            title = result["title"]
-            title = re.sub("\W+", " ", title)
-            title = title.title()[:18]
-        except:
-            title = "Unsupported Title"
-        vidids = vidid if vidid else result["id"]
-        vidurl = url if url else result["link"]
-        try:
-            duration = result["duration"] + " Mins"
-        except:
-            duration = "Unknown Mins"
-    
-    return [vidids, vidurl, title, duration]
+        videoid= vidid if vidid else result["id"]
+        videourl = url if url else result["link"]
+
+    return [videoid, videourl]
 
 
 
