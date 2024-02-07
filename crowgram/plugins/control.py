@@ -1,4 +1,4 @@
-from crowgram import app, call, cdz
+from crowgram import app, call, cdz, eor
 from crowgram import add_to_queue, get_from_queue
 from crowgram import clear_queue, is_queue_empty, task_done
 from pyrogram import filters
