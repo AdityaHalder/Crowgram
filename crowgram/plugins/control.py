@@ -76,6 +76,8 @@ async def skip_stream(client, message):
 
 @app.on_message(cdz(["stp", "stop", "end", "vend"]) & ~filters.private)
 async def cease_stream(client, message):
+    if message.sender_chat:
+        return
     chat_id = message.chat.id
     try:
         a = await call.get_call(chat_id)
