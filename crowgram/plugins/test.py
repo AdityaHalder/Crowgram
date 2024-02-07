@@ -9,7 +9,7 @@ async def test_media_stream(client, message):
         return
     chat_id = message.chat.id
     stream = MediaStream(
-        "https://www.youtube.com/watch?v=wjvyh7V39u4"
+        "https://www.youtube.com/watch?v=wjvyh7V39u4",
         AudioQuality.HIGH,
         VideoQuality.HD_720p,
     )
