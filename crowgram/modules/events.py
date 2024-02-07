@@ -1,3 +1,4 @@
+from crowgram import config
 from pyrogram import filters
 from pyrogram.types import Message
 from typing import Union, List
