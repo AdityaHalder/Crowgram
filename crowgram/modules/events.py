@@ -38,7 +38,9 @@ async def call_decorators():
     @call.on_left()
     async def stream_services_handler(client, update: Update):
         chat_id = update.chat_id
-        await queues.clear_queue(chat_id)
+        queue_empty = await queues.is_queue_empty(chat_id)
+        if not queue_empty:
+            await queues.clear_queue(chat_id)
         try:
             return await call.leave_group_call(chat_id)
         except:
@@ -53,7 +55,6 @@ async def call_decorators():
         await queues.task_done(chat_id)
         queue_empty = await queues.is_queue_empty(chat_id)
         if queue_empty:
-            await queues.clear_queue(chat_id)
             try:
                 return await call.leave_group_call(chat_id)
             except:
