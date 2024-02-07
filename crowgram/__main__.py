@@ -1,6 +1,7 @@
 import asyncio, pyrogram
 
 from crowgram import app, bot, call
+from crowgram import call_decorators
 from crowgram.plugins import load_plugins
 
 
@@ -17,6 +18,7 @@ async def init():
         print("PyTgCalls client started.")
         await load_plugins()
         print("All plugins loaded.")
+        await call_decorators()
     except Exception as e:
         return print(
             f"Error: {e}"
