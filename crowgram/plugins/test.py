@@ -8,14 +8,8 @@ async def test_media_stream(client, message):
     if message.sender_chat:
         return
     chat_id = message.chat.id
-    link = (
-        message.text.split(None, 1)[1]
-        if len(message.command) != 1 else None
-    )
-    if not link:
-        return
     stream = MediaStream(
-        f"{link}",
+        "https://www.youtube.com/watch?v=wjvyh7V39u4"
         AudioQuality.HIGH,
         VideoQuality.HD_720p,
     )
