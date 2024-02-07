@@ -2,6 +2,7 @@ import re
 
 from crowgram import app, call, cdz, eor
 from crowgram import add_to_queue
+from crowgram import download_media_file
 from crowgram import get_media_info, get_media_stream
 from pyrogram import filters
 from pytgcalls.exceptions import AlreadyJoinedError, GroupCallNotFound
@@ -39,11 +40,12 @@ async def start_stream(client, message):
         else:
             vidid = None
         results = await get_media_info(vidid, query)
-        media = str(results[1])
+        link = str(results[1])
         if command == "v":
             type = "Video"
         else:
             type = "Audio"
+        media = await download_media_file(link, type)
     try:
         a = await call.get_call(chat_id)
         if a.status == "not_playing":
