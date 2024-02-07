@@ -2,7 +2,7 @@ import re
 
 from crowgram import app, call, cdz, eor
 from crowgram import add_to_queue
-from crowgram import get_media_info, get_media_stream
+from crowgram import get_media_info, get_media_stream, get_stream_link
 from pyrogram import filters
 from pytgcalls.exceptions import AlreadyJoinedError, GroupCallNotFound
 from pytgcalls.exceptions import NoActiveGroupCall, TelegramServerError
