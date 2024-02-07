@@ -39,17 +39,15 @@ async def start_stream(client, message):
         else:
             vidid = None
         results = await get_media_info(vidid, query)
-        media = results[1]
+        media = str(results[1])
         if command == "v":
             type = "Video"
         else:
             type = "Audio"
-    print(media)
     try:
         a = await call.get_call(chat_id)
         if a.status == "not_playing":
             stream = await get_media_stream(media, type)
-            print(stream)
             await call.change_stream(chat_id, stream)
             await add_to_queue(chat_id, media=media, type=type)
             return await aux.edit("**Streaming Started ....**")
@@ -59,23 +57,18 @@ async def start_stream(client, message):
     except GroupCallNotFound:
         try:
             stream = await get_media_stream(media, type)
-            print(stream)
             await call.join_group_call(chat_id, stream, auto_start=False)
             await add_to_queue(chat_id, media=media, type=type)
             return await aux.edit("**Streaming Started ....**")
         except NoActiveGroupCall:
-            return await aux.edit(
-                "**No Active Voice Chat Found**\n\nPlease make sure group's voice chat is enabled. If already enabled, please end it and start fresh voice chat again and if the problem continues"
-            )
+            return await aux.edit("**No Active VC !**")
         except AlreadyJoinedError:
-            return await aux.edit(
-                "**Assistant Already in Voice Chat**\n\nSystems have detected that assistant is already there in the voice chat, this issue generally comes when you play 2 queries together.\n\nIf assistant is not present in voice chat, please end voice chat and start fresh voice chat again and if the  problem continues, try /restart"
-            )
+            return await aux.edit("**Assistant Already in VC !**")
         except TelegramServerError:
-            return await aux.edit(
-                "**Telegram Server Error**\n\nTelegram is having some internal server problems, Please try playing again.\n\n If this problem keeps coming everytime, please end your voice chat and start fresh voice chat again."
-            )
+            return await aux.edit("**Telegram Server Error !**")
         except Exception as e:
             print(f"Error: {e}")
             return await aux.edit("**Please Try Again !**")
+        except:
+            return
 
