@@ -10,8 +10,7 @@ async def test_media_stream(client, message):
     chat_id = message.chat.id
     link = (
         message.text.split(None, 1)[1]
-        if len(message.command) != 1
-        else None
+        if len(message.command) != 1 else None
     )
     if not link:
         return
