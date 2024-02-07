@@ -84,7 +84,7 @@ async def get_stream_link(link: str):
 
 
 # Stream Using PyTgCalls
-async def get_stream_data(media, type: str):
+async def get_media_stream(media, type: str):
     if type == "Audio":
         stream = MediaStream(
             media_path=media,
