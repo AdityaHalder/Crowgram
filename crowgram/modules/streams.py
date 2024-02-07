@@ -42,7 +42,7 @@ def get_video_name(video: Union[Video, VideoNote]):
     
 
 # Get Details Of Youtube Video
-async def get_stream_info(vidid, query):
+async def get_stream_info(vidid: str, query: str):
     url = (
         f"https://www.youtube.com/watch?v={vidid}"
         if vidid else None
@@ -68,7 +68,7 @@ async def get_stream_info(vidid, query):
 
 
 # Direct Link From YouTube
-async def get_stream_link(link):
+async def get_stream_link(link: str):
     proc = await asyncio.create_subprocess_exec(
         "yt-dlp",
         "-g",
@@ -84,36 +84,19 @@ async def get_stream_link(link):
 
 
 # Stream Using PyTgCalls
-async def get_stream_data(
-    media, audio: None, type: str
-):
+async def get_stream_data(media, type: str):
     if type == "Audio":
-        if audio:
-            stream = MediaStream(
-                media_path=audio,
-                video_flags=MediaStream.IGNORE,
-                audio_parameters=AudioQuality.STUDIO,
-            )
-        else:
-            stream = MediaStream(
-                media_path=media,
-                video_flags=MediaStream.IGNORE,
-                audio_parameters=AudioQuality.STUDIO,
-            )
+        stream = MediaStream(
+            media_path=media,
+            video_flags=MediaStream.IGNORE,
+            audio_parameters=AudioQuality.STUDIO,
+        )
     elif type == "Video":
-        if audio:
-            stream = MediaStream(
-                media_path=media,
-                audio_path=audio,
-                audio_parameters=AudioQuality.STUDIO,
-                video_parameters=VideoQuality.HD_720p,
-            )
-        else:
-            stream = MediaStream(
-                media_path=media,
-                audio_parameters=AudioQuality.STUDIO,
-                video_parameters=VideoQuality.HD_720p,
-            )
+        stream = MediaStream(
+            media_path=media,
+            audio_parameters=AudioQuality.STUDIO,
+            video_parameters=VideoQuality.HD_720p,
+        )
             
     return stream
             
