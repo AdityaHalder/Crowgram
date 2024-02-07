@@ -8,7 +8,7 @@ from pytgcalls.exceptions import AlreadyJoinedError, GroupCallNotFound
 from pytgcalls.exceptions import NoActiveGroupCall, TelegramServerError
 
 
-@app.on_message(cdx(["ply", "play", "vply", "vplay"]) & ~filters.private)
+@app.on_message(cdz(["ply", "play", "vply", "vplay"]) & ~filters.private)
 async def start_stream(client, message):
     if message.sender_chat:
         return
