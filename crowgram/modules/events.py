@@ -37,8 +37,7 @@ async def call_decorators():
     @call.on_kicked()
     @call.on_closed_voice_chat()
     @call.on_left()
-    async def stream_services_handler(client, update: Update):
-        chat_id = update.chat_id
+    async def stream_services_handler(client, chat_id: int):
         queue_empty = await queues.is_queue_empty(chat_id)
         if not queue_empty:
             await queues.clear_queue(chat_id)
