@@ -61,8 +61,9 @@ async def skip_stream(client, message):
                 )
             check = await get_from_queue(chat_id)
             media = check["media"]
+            audio = check["audio"]
             type = check["type"]
-            stream = await get_media_stream(media, type)
+            stream = await get_media_stream(media, audio, type)
             await call.change_stream(chat_id, stream)
             return await eor(
                 message,
