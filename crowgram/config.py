@@ -11,7 +11,7 @@ STRING_SESSION = getenv("STRING_SESSION", None)
 LOG_GROUP_ID = int(getenv("LOG_GROUP_ID", None))
 
 
-# Optional Varianbles
+# Optional Variables
 COMMAND_PREFIXES = list(getenv("COMMAND_PREFIXES", ". !").split())
 
 
