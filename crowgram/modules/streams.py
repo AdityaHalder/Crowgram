@@ -42,7 +42,7 @@ def get_video_name(video: Union[Video, VideoNote]):
     
 
 # Get Details Of Youtube Video
-async def get_stream_info(vidid: str, query: str):
+async def get_media_info(vidid: str, query: str):
     url = (
         f"https://www.youtube.com/watch?v={vidid}"
         if vidid else None
