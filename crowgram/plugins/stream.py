@@ -46,7 +46,7 @@ async def start_stream(client, message):
             type = "Video"
         else:
             type = "Audio"
-        streams = get_stream_link(link)
+        streams = await get_stream_link(link)
         media = streams[0]
         audio = streams[1]
     try:
