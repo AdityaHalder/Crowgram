@@ -1,7 +1,7 @@
 from crowgram import config
 from crowgram.modules import queues
 from crowgram.modules.clients import app, call
-from crowgram.modules.streams import get_media_info
+from crowgram.modules.streams import get_media_stream
 from pyrogram import filters
 from pyrogram.types import Message
 from pytgcalls.types import Update
@@ -62,7 +62,7 @@ async def call_decorators():
         check = await queues.get_from_queue(chat_id)
         media = check["media"]
         type = check["type"]
-        stream = await get_media_info(media, type)
+        stream = await get_media_stream(media, type)
         await call.change_stream(chat_id, stream)
         return await app.send_message("Streaming ...")
 
