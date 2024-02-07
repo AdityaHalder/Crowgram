@@ -74,19 +74,36 @@ async def get_stream_link(link: str):
 
 
 # Stream Using PyTgCalls
-async def get_media_stream(media, type: str):
+async def get_media_stream(
+    media, audio: None, type: str
+):
     if type == "Audio":
-        stream = MediaStream(
-            media_path=media,
-            video_flags=MediaStream.IGNORE,
-            audio_parameters=AudioQuality.STUDIO,
-        )
+        if audio:
+            stream = MediaStream(
+                media_path=audio,
+                video_flags=MediaStream.IGNORE,
+                audio_parameters=AudioQuality.STUDIO,
+            )
+        else:
+            stream = MediaStream(
+                media_path=media,
+                video_flags=MediaStream.IGNORE,
+                audio_parameters=AudioQuality.STUDIO,
+            )
     elif type == "Video":
-        stream = MediaStream(
-            media_path=media,
-            audio_parameters=AudioQuality.STUDIO,
-            video_parameters=VideoQuality.HD_720p,
-        )
+        if audio:
+            stream = MediaStream(
+                media_path=media,
+                audio_path=audio,
+                audio_parameters=AudioQuality.STUDIO,
+                video_parameters=VideoQuality.HD_720p,
+            )
+        else:
+            stream = MediaStream(
+                media_path=media,
+                audio_parameters=AudioQuality.STUDIO,
+                video_parameters=VideoQuality.HD_720p,
+            )
             
     return stream
             
