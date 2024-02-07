@@ -24,5 +24,5 @@ async def load_plugins():
         imported_plugin = importlib.import_module(
             "crowgram.plugins." + all_plugin
         )
-        return imported_plugin
+        print(f"Imported: {all_plugin}")
 
