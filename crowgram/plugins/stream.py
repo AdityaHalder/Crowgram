@@ -78,7 +78,3 @@ async def start_stream(client, message):
             print(f"Error: {e}")
             return await aux.edit("**Please Try Again !**")
 
-
-
-__NAME__ = "𝐒ᴛʀᴇᴀᴍ"
-__MENU__ = "𝑪𝒐𝒎𝒊𝒏𝒈 𝑺𝒐𝒐𝒏"
