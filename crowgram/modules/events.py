@@ -1,6 +1,10 @@
 from crowgram import config
+from crowgram.clients import app, call
+from crowgram.modules import queues
 from pyrogram import filters
 from pyrogram.types import Message
+from pytgcalls.types import Update
+from pytgcalls.types.stream import StreamAudioEnded
 from typing import Union, List
 
 
@@ -26,4 +30,38 @@ async def eor(message: Message, *args, **kwargs) -> Message:
         )
     
     return await msg(*args, **kwargs)
+
+
+async def call_decorators():
+    @call.on_kicked()
+    @call.on_closed_voice_chat()
+    @call.on_left()
+    async def stream_services_handler(client, update: Update):
+        chat_id = update.chat_id
+        await queues.clear_queue(chat_id)
+        try:
+            return await call.leave_group_call(chat_id)
+        except:
+            return
+
+
+    @call.on_stream_end()
+    async def stream_end_handler_(client, update: Update):
+        if not isinstance(update, StreamAudioEnded):
+            return
+        chat_id = update.chat_id
+        await queues.task_done(chat_id)
+        queue_empty = await queues.is_queue_empty(chat_id)
+        if queue_empty:
+            await queues.clear_queue(chat_id)
+            try:
+                return await call.leave_group_call(chat_id)
+            except:
+                return
+        check = await queues.get_from_queue(chat_id)
+        media = check["media"]
+        type = check["type"]
+        stream = await get_stream_data(media, type)
+        await call.change_stream(chat_id, stream)
+        return await app.send_message("Streaming ...")
 
