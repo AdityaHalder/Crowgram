@@ -44,6 +44,7 @@ async def start_stream(client, message):
             type = "Video"
         else:
             type = "Audio"
+    print(media)
     try:
         a = await call.get_call(chat_id)
         if a.status == "not_playing":
