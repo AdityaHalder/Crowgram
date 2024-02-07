@@ -22,9 +22,11 @@ async def start_stream(client, message):
     command = str(message.command[0][0])
     if audiostream:
         media = await client.download_media(replied)
+        audio = None
         type = "Audio"
     elif videostream:
         media = await client.download_media(replied)
+        audio = None
         type = "Video"
     else:
         if len(message.command) < 2:
@@ -39,26 +41,29 @@ async def start_stream(client, message):
         else:
             vidid = None
         results = await get_media_info(vidid, query)
-        media = str(results[1])
+        link = str(results[1])
         if command == "v":
             type = "Video"
         else:
             type = "Audio"
+        streams = get_stream_link(link)
+        media = streams[0]
+        audio = streams[1]
     try:
         a = await call.get_call(chat_id)
         if a.status == "not_playing":
-            stream = await get_media_stream(media, type)
+            stream = await get_media_stream(media, audio, type)
             await call.change_stream(chat_id, stream)
-            await add_to_queue(chat_id, media=media, type=type)
+            await add_to_queue(chat_id, media=media, audio=audio, type=type)
             return await aux.edit("**Streaming Started ....**")
         elif (a.status == "playing" or a.status == "paused"):
-            position = await add_to_queue(chat_id, media=media, type=type)
+            position = await add_to_queue(chat_id, media=media, audio=audio, type=type)
             return await aux.edit(f"**Added to Queue At {position}**")
     except GroupCallNotFound:
         try:
-            stream = await get_media_stream(media, type)
+            stream = await get_media_stream(media, audio, type)
             await call.join_group_call(chat_id, stream, auto_start=False)
-            await add_to_queue(chat_id, media=media, type=type)
+            await add_to_queue(chat_id, media=media, audio=audio, type=type)
             return await aux.edit("**Streaming Started ....**")
         except NoActiveGroupCall:
             return await aux.edit("**No Active VC !**")
