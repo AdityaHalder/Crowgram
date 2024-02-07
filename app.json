@@ -10,7 +10,6 @@
       "crowgram"
     ],
     "repository": "https://github.com/AdityaHalder/Crowgram",
-    "stack": "container",
     "env": {
         "API_ID": {
             "description": "Enter your api id here.",
