@@ -49,6 +49,7 @@ async def start_stream(client, message):
         a = await call.get_call(chat_id)
         if a.status == "not_playing":
             stream = await get_media_stream(media, type)
+            print(stream)
             await call.change_stream(chat_id, stream)
             await add_to_queue(chat_id, media=media, type=type)
             return await aux.edit("**Streaming Started ....**")
@@ -58,6 +59,7 @@ async def start_stream(client, message):
     except GroupCallNotFound:
         try:
             stream = await get_media_stream(media, type)
+            print(stream)
             await call.join_group_call(chat_id, stream, auto_start=False)
             await add_to_queue(chat_id, media=media, type=type)
             return await aux.edit("**Streaming Started ....**")
