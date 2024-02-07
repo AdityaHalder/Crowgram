@@ -53,7 +53,7 @@ async def start_stream(client, message):
             return await aux.edit("**Streaming Started ....**")
         elif (a.status == "playing" or a.status == "paused"):
             position = await add_to_queue(chat_id, media=media, type=type)
-            return await aux.delete(f"**Added to Queue At {position}**")
+            return await aux.edit(f"**Added to Queue At {position}**")
     except GroupCallNotFound:
         try:
             stream = await get_media_stream(media, type)
