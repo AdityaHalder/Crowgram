@@ -1,48 +1,53 @@
 {
-    "name": "Crowgram",
-    "description": "Crowgram is a powerful, advanced, multi-featured Telegram userbot.",
-    "logo": "https://telegra.ph/file/95ea921aa5b01e3b9c91e.png",
+    "name": "⛦BrandrdXMusic⛦",
+    "description": "A Telegram Music Player Bot, written in Python with Pyrogram and Py-Tgcalls.",
+    "logo": "https://te.legra.ph/file/62fa7c81c56c1ae31c844.jpg",
     "keywords": [
-      "userbot",
-      "plugins",
-      "modules",
-      "music",
-      "crowgram"
+    "python3",
+    "telegram",
+    "bot",
+    "Brandrd",
+    "MusicBot",
+    "telegram-bot",
+    "pyrogram"
     ],
-    "repository": "https://github.com/AdityaHalder/Crowgram",
     "env": {
-        "API_ID": {
-            "description": "Enter your api id here.",
-            "value": "",
-            "required": true
-        },
-        "API_HASH": {
-            "description": "Enter your api hash here.",
-            "value": "",
-            "required": true
-        },
-        "BOT_TOKEN": {
-            "description": "Enter your bot token here",
-            "value": "",
-            "required": true
-        },
-        "STRING_SESSION": {
-            "description": "Enter your pyrogram v2 string session here.",
-            "value": "",
-            "required": true
-        },
-        "LOG_GROUP_ID": {
-            "description": "Enter your private log group id here.",
-            "value": "",
-            "required": true
-        }
+      "API_ID": {
+        "description": "Get this value from https://my.telegram.org",
+        "value": "",
+        "required": true
+      },
+      "API_HASH": {
+        "description": "Get this value from https://my.telegram.org",
+        "value": "",
+        "required": true
+      },
+      "BOT_TOKEN": {
+        "description": "A Bot's token from Botfather",
+        "value": "",
+        "required": true
+      },
+      "STRING_SESSION": {
+        "description": "A Pyrogram v2 String Session from @BRANDEDSTRINGSESSION_BOT on Telegram.",
+        "value": "",
+        "required": true 
+      },
+      "LOGGER_ID": {
+        "description": "Your Log Group ID, add your bot and promote as an admin with full rights!. Don't Add Channel's ID.",
+        "value": "",
+        "required": true
+      }
     },
     "buildpacks": [
-        {
-            "url": "heroku/python"
-        },
-        {
-            "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest"
-        }
-    ]
-}
+          {
+              "url": "heroku/python"
+          },
+          {
+              "url": "heroku/nodejs"
+          },
+          {
+              "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git"
+          }
+      ],
+      "stack": "container"
+  }
